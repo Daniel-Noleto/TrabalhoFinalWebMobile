@@ -1,0 +1,29 @@
+{% extends '../base.html' %}
+
+{% block navbar %}
+  {% include 'components/navbar-mus.html' %}
+{% endblock %}
+
+{% block title %}Editar Música{% endblock %}
+
+{% block list %}
+<div class="container mt-5">
+    <h2 class="mb-4">Deletar Música</h2>
+    <form action="{% url 'deletar-musicas' musica.pk%}" method="post" enctype="multipart/form-data"> 
+        {% csrf_token %}
+        <center>
+            <div class="alert alert-danger" role="alert">
+                <p>Tem certeza que deseja excluir a musica "{{object}}"?</p>
+            </div>
+
+            <input type="submit" value="Confirmar" class="btn btn-primary" />
+            <a href="{% url 'listar-musicas' %}" class="btn btn-danger">Cancelar</a>
+        </center>
+        
+    </form>
+</div>
+{% endblock %}
+
+{% block footer %}
+  {% include 'components/footer.html' %}
+{% endblock %}

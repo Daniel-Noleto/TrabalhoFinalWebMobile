@@ -1,0 +1,39 @@
+{% extends '../base.html' %}
+
+{% block navbar %}
+  {% include 'components/navbar-mus.html' %}
+{% endblock %}
+
+{% block title %}Listagem{% endblock %}
+
+{% block list %}
+  <div class="div-lista">
+    
+    <div class="row">
+        
+      
+        {% for m in musicas %}   
+        <div class="card" style="width: 18rem; margin: 10px;">
+          {% if m.foto %}
+            <img class="card-img-top" src="{{ m.foto.url }}" alt="{{ m.musica }}">
+          {% else %}
+            <p>Sem foto disponível</p>
+          {% endif %}
+
+          
+          <div class="card-body">
+            <h5 class="card-title">{{ m.banda }} - {{m.musica}}</h5>
+            <p class="card-text">Ano de lançamento: {{ m.ano }}</p>
+            <p class="card-text">Categoria: {{ m.get_estilo_display }}</p>
+        
+            <a href="/musica/{{m.id}}" class="btn btn-primary">Editar</a>
+            <a href="/musica/deletar/{{m.id}}" class="btn btn-danger">Deletar</a>
+          </div>
+        </div>
+      {% empty %}
+        <p>Não há músicas disponíveis no momento.</p>
+      {% endfor %}
+      
+    </div>
+  </div>
+{% endblock %}

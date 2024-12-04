@@ -1,0 +1,65 @@
+{% extends '../base.html' %}
+
+{% block navbar %}
+  {% include 'components/navbar-col.html' %}
+{% endblock %}
+
+{% block title %}Listagem{% endblock %}
+
+
+{% block list %}
+  <div class="div-lista" style="padding: 15px;">
+
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+
+    <script>
+      // Remover mensagens
+      setTimeout(function() {
+          document.querySelectorAll('.messages .alert').forEach(function(alert) {
+              alert.style.transition = "opacity 0.5s ease";
+              alert.style.opacity = "0";
+              setTimeout(() => alert.remove(), 500); // Remover do DOM
+          });
+      }, 2000); 
+  </script>
+    {% endif %}       
+
+
+    <div class="row">
+        <h3>Listando {{colecoes|length}} coleções:</h3>
+      {% for c in colecoes %}  
+      
+        <div class="card" style="width: 18rem; margin: 10px;">
+          
+          {% if c.foto %}
+          <img class="card-img-top" src="{{ c.foto.url }}" alt="{{ c.nome }}" style="width: 262px; height: 262px; object-fit: cover;">
+          {% else %}
+          <img class="card-img-top" src="{{ c.musicas.all.0.foto.url }}" alt="{{ c.nome }}" style="width: 262px; height: 262px; object-fit: cover;">
+          {% endif %}
+          
+          
+          <div class="card-body">
+            <h5>{{ c.nome }}</h5>
+            <p class="card-text">{{  c.descricao }}</p>
+            
+            <a href="/colecao/{{c.id}}" class="btn btn-primary">Editar</a>
+            <a href="/colecao/deletar/{{c.id}}" class="btn btn-danger">Deletar</a>
+           
+          </div> 
+        </div>
+      {% empty %}
+        <p>Não há coleções disponíveis no momento.</p>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
+
+<!--{% block footer %}
+  {% include 'components/footer.html' %}
+{% endblock %}
+-->

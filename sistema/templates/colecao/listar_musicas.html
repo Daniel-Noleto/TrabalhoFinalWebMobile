@@ -1,0 +1,34 @@
+{% extends '../base.html' %}
+{% block navbar %}
+    {% include 'components/navbar-col.html' %}
+{% endblock %}
+
+{% block title %}Adicionar Músicas{% endblock %}
+
+{% block list %}
+
+<div class="container">
+    <h2>Adicionar Músicas à Coleção "{{ colecao.nome }}"</h2>
+    <div class="row">
+        {% for musica in musicas %}
+        <div class="card" style="width: 18rem; margin: 10px;">
+            {% if musica.foto %}
+            <img src="{{ musica.foto.url }}" class="card-img-top" alt="{{ musica.musica }}">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ musica.banda }} - {{musica.musica}}</h5>
+                <p class="card-text">Ano de lançamento: {{ musica.ano }}</p>
+                <p class="card-text">Categoria: {{ musica.get_estilo_display }}</p>
+                <form action="{% url 'adicionar-musica-colecao' colecao.pk musica.pk %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">Adicionar</button>
+                </form>
+            </div>
+        </div>
+        {% empty %}
+        <p>Não há músicas disponíveis para adicionar.</p>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

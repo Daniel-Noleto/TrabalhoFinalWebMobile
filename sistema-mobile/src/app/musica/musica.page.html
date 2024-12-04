@@ -1,0 +1,62 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+   </ion-buttons>
+    <ion-title>Listagem de Músicas</ion-title>
+    <ion-text slot="end" class="ion-margin-end">
+      <h3>{{usuario.nome}}</h3>
+    </ion-text>
+  </ion-toolbar>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-button color="primary" expand="block" (click)="acessarAdicionarMusica()">
+        <ion-icon name="add-circle-outline" slot="start"></ion-icon>
+        Adicionar Música
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" color="danger" (click)="logout()" >
+        <ion-icon name="log-out-outline" slot="start"></ion-icon>
+        Sair
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Desenvolvimento webmobile</ion-card-title>
+      <ion-card-subtitle>Aplicativo Músicas</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item-sliding *ngFor="let musica of lista_musicas">
+          <ion-item>
+            <ion-thumbnail slot="start">
+              <img *ngIf="musica.foto" [src]="'data:image/jpeg;base64,' + musica.foto" />
+              <img *ngIf="!musica.foto" src="../../assets/imgs/thumbnail.svg" />
+            </ion-thumbnail>
+            <ion-label>
+              {{musica.banda}} - {{musica.musica}}
+            </ion-label>
+            <ion-label slot="end" color="primary">
+              {{musica.ano}}
+            </ion-label>
+          </ion-item>
+          <ion-item-options>
+            <ion-item-option color="primary" (click)="editarMusica(musica.id)">
+              Editar
+            </ion-item-option>
+            <ion-item-option color="danger" (click)="excluirMusica(musica.id)">
+              Excluir
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>        
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

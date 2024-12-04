@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Músicas{% endblock %}</title>
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="div-display">
+
+        <!-- Navbar block -->
+        {% block navbar %}{% endblock %}
+        
+        {% block list %}{% endblock %}
+        
+        {% block footer %}{% endblock%}
+    </div>
+    
+    <script>"{% static 'js/bootstrap.js' %}"</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Importando o bootstrap.css da pasta css -->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Container principal -->
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="row w-100">
+            <!-- Formulário de Login -->
+            <div class="col-md-4 offset-md-4">
+                <div class="card shadow-lg">
+                    <div class="card-header bg-primary text-white text-center">
+                        <h3>Tela de Login</h3>
+                    </div>
+                    <div class="card-body">
+                        <form action="/" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="usuario">Usuário</label>
+                                <input type="text" class="form-control" placeholder="Usuário" name="usuario" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="senha">Senha</label>
+                                <input type="password" class="form-control" placeholder="Senha" name="senha" required>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-block mt-4">Entrar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Mensagem de erro -->
+                {% if mensagem %}
+                    <div class="alert alert-danger mt-3" role="alert">
+                        {{ mensagem }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Importando o bootstrap.js da pasta js -->
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+</body>
+</html>

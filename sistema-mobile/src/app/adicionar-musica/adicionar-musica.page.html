@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/musica"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Adicionar Música</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form (ngSubmit)="adicionarMusica()">
+    <!-- Campo Banda -->
+    <ion-item>
+      <ion-label position="floating">Banda</ion-label>
+      <ion-input type="text" [(ngModel)]="musica.banda" name="banda" required></ion-input>
+    </ion-item>
+
+    <!-- Campo Música -->
+    <ion-item>
+      <ion-label position="floating">Música</ion-label>
+      <ion-input type="text" [(ngModel)]="musica.musica" name="musica" required></ion-input>
+    </ion-item>
+
+    <!-- Campo Ano -->
+    <ion-item>
+      <ion-label position="floating">Ano</ion-label>
+      <ion-input type="number" [(ngModel)]="musica.ano" name="ano" required></ion-input>
+    </ion-item>
+
+    <!-- Campo Estilo Musical-->
+    <ion-item>
+      <ion-label position="floating">Estilo</ion-label>
+      <ion-select [(ngModel)]="musica.estilo" name="estilo" required>
+        <ion-select-option value="1">POP</ion-select-option>
+        <ion-select-option value="2">ROCK</ion-select-option>
+        <ion-select-option value="3">HIP HOP/RAP</ion-select-option>
+        <ion-select-option value="4">JAZZ</ion-select-option>
+        <ion-select-option value="5">SERTANEJO</ion-select-option>
+        <ion-select-option value="6">MPB</ion-select-option>
+        <ion-select-option value="7">REGGAE</ion-select-option>
+        <ion-select-option value="8">FUNK</ion-select-option>
+        <ion-select-option value="9">COUNTRY</ion-select-option>
+        <ion-select-option value="10">BLUES</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Campo Foto -->
+    <ion-item>
+      <ion-label position="floating">Foto</ion-label> <br>
+      <input type="file" (change)="onFileSelected($event)" name="foto" style="margin-top: 30px; margin-bottom: 30px;" />
+    </ion-item>
+
+    <!-- Botão de Submit -->
+    <ion-button expand="full" type="submit" color="primary">Adicionar Música</ion-button>
+  </form>
+</ion-content>
